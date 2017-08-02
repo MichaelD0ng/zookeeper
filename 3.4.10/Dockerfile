@@ -39,8 +39,8 @@ RUN set -x \
     && gpg --batch --verify "$DISTRO_NAME.tar.gz.asc" "$DISTRO_NAME.tar.gz" \
     && tar -xzf "$DISTRO_NAME.tar.gz" \
     && mv "$DISTRO_NAME/conf/"* "$ZOO_CONF_DIR" \
-    && rm -r "$DISTRO_NAME.tar.gz" "$DISTRO_NAME.tar.gz.asc" \
-    && apk del .build-deps
+    && rm -r "$DISTRO_NAME.tar.gz" "$DISTRO_NAME.tar.gz.asc"
+#    && apk del .build-deps
 
 WORKDIR $DISTRO_NAME
 VOLUME ["$ZOO_DATA_DIR", "$ZOO_DATA_LOG_DIR"]
