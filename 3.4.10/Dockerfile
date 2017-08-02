@@ -24,7 +24,7 @@ RUN set -x \
     && adduser -D "$ZOO_USER" \
     && mkdir -p "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR" \
     && chown "$ZOO_USER:$ZOO_USER" "$ZOO_DATA_LOG_DIR" "$ZOO_DATA_DIR" "$ZOO_CONF_DIR"
-RUN echo "88.198.26.2 www.apache.org" >> /etc/hosts
+
 ARG GPG_KEY=C823E3E5B12AF29C67F81976F5CECB3CB5E9BD2D
 ARG DISTRO_NAME=zookeeper-3.4.10
 
@@ -39,7 +39,7 @@ RUN set -x \
     && gpg --batch --verify "$DISTRO_NAME.tar.gz.asc" "$DISTRO_NAME.tar.gz" \
     && tar -xzf "$DISTRO_NAME.tar.gz" \
     && mv "$DISTRO_NAME/conf/"* "$ZOO_CONF_DIR" \
-    && rm -r "$GNUPGHOME" "$DISTRO_NAME.tar.gz" "$DISTRO_NAME.tar.gz.asc" \
+    && rm -r "$DISTRO_NAME.tar.gz" "$DISTRO_NAME.tar.gz.asc" \
     && apk del .build-deps
 
 WORKDIR $DISTRO_NAME
